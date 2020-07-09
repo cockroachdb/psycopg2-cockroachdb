@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  cockroachdb:
+    image: "cockroachdb/cockroach:v20.1.3"
+    command: "start-single-node --insecure"
+  psycopg2:
+    image: "python:3.8-buster"
+    command: "/code/build_test_psycopg2.sh"
+    volumes:
+      - .:/code
