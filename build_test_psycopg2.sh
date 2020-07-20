@@ -5,10 +5,12 @@ set -x
 
 branch=${BRANCH:-master}
 
-# Download, build, install psycopg2
-cd /
-git clone --branch ${branch} https://github.com/psycopg/psycopg2.git
-cd psycopg2
+# Download if needed, build, install psycopg2
+if [[ ! -d /psycopg2 ]]; then
+    git -C / clone --branch ${branch} https://github.com/psycopg/psycopg2.git
+fi
+
+cd /psycopg2
 python setup.py build install
 
 export PGUSER=root
