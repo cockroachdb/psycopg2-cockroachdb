@@ -13,4 +13,7 @@ docker-compose run --rm -e BRANCH=branch_name psycopg2
 
 # to test psycopg from a directory on the host
 docker-compose run --rm -v /host/path/to/psycopg2:/psycopg2 psycopg2
+
+# run a specific test module, class, function
+docker-compose run --rm -e TEST=tests.test_async.AsyncTests.test_async_select psycopg2
 ```
