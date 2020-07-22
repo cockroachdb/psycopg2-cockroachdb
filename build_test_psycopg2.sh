@@ -25,6 +25,7 @@ export PSYCOPG2_TESTDB=psycopg2_test
 python <<HERE
 import psycopg2
 conn = psycopg2.connect("")
+conn.autocommit = True
 curs = conn.cursor()
 curs.execute("CREATE DATABASE IF NOT EXISTS ${PSYCOPG2_TESTDB}")
 HERE
