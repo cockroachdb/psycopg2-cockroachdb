@@ -28,8 +28,12 @@ conn = psycopg2.connect("")
 conn.autocommit = True
 curs = conn.cursor()
 curs.execute("CREATE DATABASE IF NOT EXISTS ${PSYCOPG2_TESTDB}")
+curs.execute("CREATE USER testuser")
+curs.execute("GRANT admin TO testuser")
+curs.execute("ALTER ROLE testuser SET enable_implicit_transaction_for_batch_statements = true")
 HERE
 
+export PGUSER=testuser
 # Run the test suite
 python -c "import tests; tests.unittest.main(defaultTest='${test}')" \
     --verbose
